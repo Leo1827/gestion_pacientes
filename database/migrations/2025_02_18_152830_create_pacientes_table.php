@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('apellido');
+            $table->string('nombre1');
+            $table->string('nombre2')->nullable();
+            $table->string('apellido1');
+            $table->string('apellido2')->nullable();
+            $table->string('genero');
             $table->foreignId('tipo_documento_id')->constrained('tipos_documento')->onDelete('cascade');
             $table->string('numero_documento')->unique();
-            $table->foreignId('municipio_id')->constrained('municipios')->onDelete('cascade');
-            $table->date('fecha_nacimiento');
+            $table->foreignId('departamento_id')->constrained('departamentos')->onDelete('cascade'); // Relación con departamentos
+            $table->foreignId('municipio_id')->constrained('municipios')->onDelete('cascade'); // Relación con municipios
             $table->timestamps();
         });
     }

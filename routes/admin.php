@@ -11,7 +11,8 @@ use App\Http\Controllers\Admin\EmployeeController;
             // View dashboard admin
             Route::get('/', [DashboardController::class, 'getDashboard'])->name('dashboard');
             // View employee
-            Route::get('/employee', [EmployeeController::class, 'getEmployee'])->name('employee');
+            Route::get('/employee', [EmployeeController::class, 'getPaciente'])->name('employee');
+            Route::get('/employee/add', [EmployeeController::class, 'getAddPaciente'])->name('employeeAdd');
     
         });
     });
