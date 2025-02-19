@@ -33,8 +33,17 @@ Un sistema web desarrollado en **Laravel** para la administración eficiente de 
 | **municipios**      | `id`, `departamento_id`, `nombre` |
 | **tipos_documento** | `id`, `nombre` |
 | **genero**          | `id`, `nombre` |
-| **paciente**        | `id`, `tipo_documento_id`, `numero_documento`, `nombre1`, `apellido1`, `genero_id`, `departamento_id`, `municipio_id` |
+| **paciente**        | `id`, `tipo_documento_id`, `numero_documento`, `nombre1`, `apellido1`, `genero`, `departamento_id`, `municipio_id` |
 | **imagenes_paciente** | `id`, `nombre_imagen`, `paciente_id`, `created_at` |
+
+
+## Los datos de prueba incluyen:
+
+Departamentos: 5 registros.
+Municipios: 2 por cada departamento.
+Tipos de documento: 2 registros.
+Usuarios: usuario: 12345678 - contraseña 1234567890.
+Pacientes: 5 registros de prueba.
 
 ---
 
