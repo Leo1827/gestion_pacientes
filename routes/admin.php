@@ -13,6 +13,13 @@ use App\Http\Controllers\Admin\EmployeeController;
             // View employee
             Route::get('/employee', [EmployeeController::class, 'getPaciente'])->name('employee');
             Route::get('/employee/add', [EmployeeController::class, 'getAddPaciente'])->name('employeeAdd');
+            Route::get('/municipios/{departamento}', function ($departamento) {
+                return response()->json(
+                    \App\Models\Municipio::where('departamento_id', $departamento)->get()
+                );
+            })->name('getMunicipios');
+
+            Route::post('/paciente/add', [EmployeeController::class, 'postAddPaciente'])->name('pacienteAddPost');
     
         });
     });
