@@ -75,7 +75,6 @@ class EmployeeController extends Controller
     
         return view('admin.paciente.edit', compact('paciente', 'tiposDocumento', 'departamentos', 'municipios'));
     }
-
     // Form POST edit pacientes
     public function postEditPaciente(Request $request, $id) {
         $rules = [
@@ -127,6 +126,24 @@ class EmployeeController extends Controller
                 return back()->with('message', 'Error al actualizar paciente: ' . $e->getMessage())->with('typealert', 'danger');
             }
         }
+    }
+    // Form Delete
+    public function pacienteDelete($id){
+        $paciente = Paciente::find($id);
+
+        if (!$paciente) {
+            return redirect()->back()->with([
+                'message' => 'El paciente no existe.',
+                'typealert' => 'error'
+            ]);
+        }
+
+        $paciente->delete();
+
+        return redirect()->route('employee')->with([
+            'message' => 'Paciente eliminado correctamente.',
+            'typealert' => 'success'
+        ]);
     }
     
     

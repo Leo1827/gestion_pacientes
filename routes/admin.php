@@ -28,8 +28,9 @@ use App\Http\Controllers\Admin\EmployeeController;
             Route::post('/paciente/add', [EmployeeController::class, 'postAddPaciente'])->name('pacienteAddPost');
             // Route POST edit Paciente
             Route::post('/paciente/{id}/edit', [EmployeeController::class, 'postEditPaciente'])->name('pacientePostEdit');
+            // Route Delete paciente
+            Route::delete('/pacientes/{id}/delete', [EmployeeController::class, 'pacienteDelete'])->name('pacienteDelete');
 
-    
         });
     });
     

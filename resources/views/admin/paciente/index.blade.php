@@ -43,13 +43,15 @@
                             <a href="{{ route('employeeGetEdit', $paciente->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">
                                 Editar
                             </a>
-                            <form action="" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este paciente?')">
+                            <button type="button" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 delete-btn" data-id="{{ $paciente->id }}">
+                                Eliminar
+                            </button>
+                            {{-- Sweet alert id --}}
+                            <form id="delete-form-{{ $paciente->id }}" action="{{ route('pacienteDelete', $paciente->id) }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
-                                    Eliminar
-                                </button>
-                            </form>
+                            </form>    
+                            
                         </td>
                     </tr>
                     @endforeach
@@ -68,16 +70,18 @@
                     <p><strong>Departamento:</strong> {{ $paciente->departamento->nombre ?? 'N/A' }}</p>
                     <p><strong>Municipio:</strong> {{ $paciente->municipio->nombre ?? 'N/A' }}</p>
                     <div class="mt-2 flex space-x-2">
-                        <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
+                        <a href="{{ route('employeeGetEdit', $paciente->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
                             Editar
                         </a>
-                        <form action="" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este paciente?')">
+                        <button type="button" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 delete-btn" data-id="{{ $paciente->id }}">
+                            Eliminar
+                        </button>
+                        {{-- Sweet alert id --}}
+                        <form id="delete-form-{{ $paciente->id }}" action="{{ route('pacienteDelete', $paciente->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
-                                Eliminar
-                            </button>
                         </form>
+                        
                     </div>
                 </div>
                 @endforeach
@@ -91,4 +95,31 @@
         {{ $pacientes->links() }}
     </div>
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let pacienteId = this.getAttribute('data-id');
+
+                Swal.fire({
+                    title: "¿Estás seguro?",
+                    text: "¡No podrás revertir esto!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Sí, eliminar",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-form-' + pacienteId).submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
 @endsection
