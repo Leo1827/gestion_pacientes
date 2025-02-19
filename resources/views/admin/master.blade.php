@@ -22,9 +22,10 @@
     <div id="content" class="flex-1 min-h-screen transition-all duration-300 md:ml-64">
         @include('admin.layout.header')
         <div class="p-6">@yield('content')</div>
-        @include('admin.layout.footer')
+        
     </div>
-
+    
+    @include('admin.layout.footer')
 </body>
 </html>
 

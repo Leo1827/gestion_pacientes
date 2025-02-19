@@ -40,7 +40,7 @@
                         <td class="px-4 py-2 border">{{ $paciente->departamento->nombre ?? 'N/A' }}</td>
                         <td class="px-4 py-2 border">{{ $paciente->municipio->nombre ?? 'N/A' }}</td>
                         <td class="px-4 py-2 border flex justify-center space-x-2">
-                            <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">
+                            <a href="{{ route('employeeGetEdit', $paciente->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">
                                 Editar
                             </a>
                             <form action="" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este paciente?')">
